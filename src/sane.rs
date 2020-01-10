@@ -364,11 +364,8 @@ impl<'c> PkgFileView<'c> {
                 .expect("package file always has a file name")
         }
     }
-    pub fn archive(&self) -> String {
-        unsafe {
-            make_owned_ascii_string(raw::pkg_file_iter_archive(self.ptr))
-                .expect("package file always has an archive")
-        }
+    pub fn archive(&self) -> Option<String> {
+        unsafe { make_owned_ascii_string(raw::pkg_file_iter_archive(self.ptr)) }
     }
     pub fn version(&self) -> Option<String> {
         unsafe { make_owned_ascii_string(raw::pkg_file_iter_version(self.ptr)) }

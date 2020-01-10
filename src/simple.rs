@@ -86,7 +86,7 @@ impl fmt::Display for Version {
 #[derive(Clone, Debug)]
 pub struct Origin {
     pub file_name: String,
-    pub archive: String,
+    pub archive: Option<String>,
     pub version: Option<String>,
     pub origin: Option<String>,
     pub codename: Option<String>,
@@ -135,7 +135,9 @@ impl fmt::Display for Origin {
                 self.origin.as_ref().unwrap(),
                 self.label.as_ref().unwrap(),
                 self.codename.as_ref().unwrap(),
-                self.archive,
+                self.archive
+                    .as_ref()
+                    .unwrap_or(&"Unknown package".to_string()),
                 self.component,
                 self.architecture.as_ref().unwrap(),
                 self.file_name

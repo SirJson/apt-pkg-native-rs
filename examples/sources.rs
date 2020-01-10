@@ -44,7 +44,9 @@ fn main() {
                     if version
                         .origin_iter()
                         .map(|origin| origin.file().next().unwrap().archive())
-                        .any(|archive| archive == *target_archive)
+                        .any(|archive| {
+                            archive.unwrap_or(String::from("Unknown package")) == *target_archive
+                        })
                     {
                         continue;
                     }
